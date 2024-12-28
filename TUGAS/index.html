@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akses Slip Peperiksaan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .logo {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Logo" class="logo">
+        <h2>AKSES SLIP TUGASAN GURU 2025/2026</h2>
+        <form id="idForm">
+            <div class="input-group">
+                <input type="text" id="icNumber" placeholder="Masukkan No. Kad Pengenalan" required>
+            </div>
+            <button type="submit" class="btn">Cari Slip</button>
+            <p class="error" id="errorMessage"></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('idForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const icNumber = document.getElementById('icNumber').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (!/^[0-9]{12}$/.test(icNumber)) {
+                errorMessage.textContent = "Sila masukkan no. kad pengenalan yang sah (12 digit).";
+                return;
+            }
+
+            errorMessage.textContent = "";
+
+            // Redirect to PDF URL based on IC number
+            const pdfUrl = `https://example.com/slip/${icNumber}.pdf`;
+            window.location.href = pdfUrl;
+        });
+    </script>
+</body>
+</html>
